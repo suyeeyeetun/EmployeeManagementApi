@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36429.23 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagementApi", "EmployeeManagementApi\EmployeeManagementApi.csproj", "{39A7686A-3FB4-4667-870B-7827DEB5B514}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagementApi.Database", "EmployeeManagementApi.Database\EmployeeManagementApi.Database.csproj", "{A027040F-D8F8-48F5-88F7-9B4DD7421474}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{39A7686A-3FB4-4667-870B-7827DEB5B514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39A7686A-3FB4-4667-870B-7827DEB5B514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39A7686A-3FB4-4667-870B-7827DEB5B514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39A7686A-3FB4-4667-870B-7827DEB5B514}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A027040F-D8F8-48F5-88F7-9B4DD7421474}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A027040F-D8F8-48F5-88F7-9B4DD7421474}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A027040F-D8F8-48F5-88F7-9B4DD7421474}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A027040F-D8F8-48F5-88F7-9B4DD7421474}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04B1AA81-686C-429B-8449-0D5D87DD7AF4}
+	EndGlobalSection
+EndGlobal
