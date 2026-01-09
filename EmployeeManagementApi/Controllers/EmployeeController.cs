@@ -1,4 +1,5 @@
-﻿using EmployeeManagementApi.Dtos;
+﻿using Azure.Core;
+using EmployeeManagementApi.Dtos;
 using EmployeeManagementApi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,12 @@ public class EmployeeController : ControllerBase
     [HttpGet("{id}")]
     public IActionResult GetEmployeeById(int id)
     {
-        return Ok();
+        var result = _employeeService.GetEmployeeById(id);
+        if (!result.IsSuccess)
+        {
+            return BadRequest(result);
+        }
+        return Ok(result);
     }
 
     [HttpPost]
@@ -45,20 +51,36 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateEmployee(int id)
+    public IActionResult UpdateEmployee(int id, EmployeeRequestDto request)
     {
-        return Ok();
+
+        var result = _employeeService.UpdateEmployee(id,request);
+        if (!result.IsSuccess)
+        {
+            return BadRequest(result);
+        }
+        return Ok(result);
     }
 
     [HttpPatch("{id}")]
-    public IActionResult PatchEmployee(int id)
+    public IActionResult PatchEmployee(int id, EmployeePatchRequestDto request)
     {
-        return Ok();
+        var result = _employeeService.PatchEmployee(id,request);
+        if (!result.IsSuccess)
+        {
+            return BadRequest(result);
+        }
+        return Ok(result);
     }
 
     [HttpDelete("{id}")]
     public IActionResult DeleteEmployee(int id)
     {
-        return Ok();
+        var result = _employeeService.DeleteEmployee(id);
+        if (!result.IsSuccess)
+        {
+            return BadRequest(result);
+        }
+        return Ok(result);
     }
 }

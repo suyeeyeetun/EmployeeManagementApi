@@ -7,6 +7,13 @@ public class EmployeeGetResponseDtos
     public List<EmployeeDto> Employee { get; set; }
 }
 
+public class EmployeeGetByIdResponseDto
+{
+    public bool IsSuccess { get; set; }
+    public string Message { get; set; }
+    public EmployeeDto Employee { get; set; }
+}
+
 public class EmployeeResponseDto
 {
     public bool IsSuccess { get; set; }
