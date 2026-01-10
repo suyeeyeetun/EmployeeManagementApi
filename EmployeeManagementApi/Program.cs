@@ -1,4 +1,5 @@
 using EmployeeManagementApi.Database.AppDbContextModels;
+using EmployeeManagementApi.Repositories;
 using EmployeeManagementApi.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IReportDapperRepository, ReportDapperRepository>();
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {
