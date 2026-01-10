@@ -5,6 +5,6 @@ namespace EmployeeManagementApi.Repositories
     public interface IReportDapperRepository
     {
         Task<IEnumerable<EmployeeByDepartmentReportDto>> GetEmployeeCountByDepartment();
-        Task<HighestSalaryReportDto> GetHighestSalary();
+        Task<IEnumerable<HighestSalaryReportDto>> GetHighestSalary();
     }
 }

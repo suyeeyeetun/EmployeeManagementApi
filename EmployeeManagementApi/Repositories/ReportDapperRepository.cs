@@ -26,17 +26,17 @@ Group By d.Name";
         return employee;
     }
 
-    public async Task<HighestSalaryReportDto> GetHighestSalary()
+    public async Task<IEnumerable<HighestSalaryReportDto>> GetHighestSalary()
     {
         IDbConnection db = new SqlConnection(_connectionString);
         db.Open();
         string query = @"
-        SELECT TOP 1 e.Name AS EmployeeName,
+        SELECT TOP 3 e.Name AS EmployeeName,
               s.Salary
  FROM Tbl_SalaryHistory s
  JOIN Tbl_Employees e ON s.EmployeeId = e.Id
  ORDER BY s.Salary DESC";
-        var highestSalary = await db.QueryFirstOrDefaultAsync<HighestSalaryReportDto>(query);
+        var highestSalary = await db.QueryAsync<HighestSalaryReportDto>(query);
         return highestSalary;
     }
 
