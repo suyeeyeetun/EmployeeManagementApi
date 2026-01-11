@@ -14,6 +14,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IReportDapperRepository, ReportDapperRepository>();
+builder.Services.AddScoped<IEmployeeAdoRepository, EmployeeAdoRepository>();
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {
