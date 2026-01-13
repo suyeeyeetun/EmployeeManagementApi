@@ -1,6 +1,7 @@
 ﻿using Azure.Core;
 using EmployeeManagementApi.Database.AppDbContextModels;
 using EmployeeManagementApi.Dtos;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagementApi.Services;
 
@@ -13,10 +14,10 @@ public class EmployeeService : IEmployeeService
         _db = db;
     }
 
-    public EmployeeGetResponseDtos GetEmployee()
+    public async Task<EmployeeGetResponseDtos> GetEmployee()
     {
         EmployeeGetResponseDtos dto = new EmployeeGetResponseDtos();
-        var lst = _db.TblEmployees.Where(x=>x.IsActive == true).ToList();
+        var lst = await _db.TblEmployees.Where( x => x.IsActive).ToListAsync();
         var employees = lst.Select(item => new EmployeeDto
         {
             Id = item.Id,
@@ -33,10 +34,10 @@ public class EmployeeService : IEmployeeService
         return dto;
     }
 
-    public EmployeeGetByIdResponseDto GetEmployeeById(int id)
+    public async Task<EmployeeGetByIdResponseDto> GetEmployeeById(int id)
     {
         EmployeeGetByIdResponseDto dto = new EmployeeGetByIdResponseDto();
-        var item = _db.TblEmployees.Where(x => x.IsActive).FirstOrDefault(x => x.Id == id);
+        var item = await _db.TblEmployees.Where(x => x.IsActive).FirstOrDefaultAsync(x => x.Id == id);
         if(item is null)
         {
             dto = new EmployeeGetByIdResponseDto()
@@ -63,7 +64,7 @@ public class EmployeeService : IEmployeeService
         return dto;
     }
 
-    public EmployeeResponseDto CreateEmployee(EmployeeRequestDto request)
+    public async Task<EmployeeResponseDto> CreateEmployee(EmployeeRequestDto request)
     {
         EmployeeResponseDto dto = new EmployeeResponseDto();
         if (string.IsNullOrEmpty(request.Name) && string.IsNullOrEmpty(request.Email)) {
@@ -81,7 +82,7 @@ public class EmployeeService : IEmployeeService
             DepartmentId = request.DepartmentId,
             IsActive = true
         });
-        _db.SaveChanges();
+        await _db.SaveChangesAsync();
         dto = new EmployeeResponseDto
         {
             IsSuccess = true,
@@ -90,7 +91,7 @@ public class EmployeeService : IEmployeeService
         return dto;
     }
 
-    public EmployeeResponseDto UpdateEmployee(int id,EmployeeRequestDto request)
+    public async Task<EmployeeResponseDto> UpdateEmployee(int id,EmployeeRequestDto request)
     {
         EmployeeResponseDto dto = new EmployeeResponseDto();
         if (string.IsNullOrEmpty(request.Name) && string.IsNullOrEmpty(request.Email))
@@ -106,7 +107,7 @@ public class EmployeeService : IEmployeeService
         item.Name = request.Name;
         item.Email = request.Email;
         item.DepartmentId = request.DepartmentId;
-        _db.SaveChanges();
+        await _db.SaveChangesAsync();
         
         dto = new EmployeeResponseDto
         {
@@ -116,7 +117,7 @@ public class EmployeeService : IEmployeeService
         return dto;
     }
 
-    public EmployeeResponseDto PatchEmployee(int id, EmployeePatchRequestDto request)
+    public async Task<EmployeeResponseDto> PatchEmployee(int id, EmployeePatchRequestDto request)
     {
         EmployeeResponseDto dto = new EmployeeResponseDto();
         var item = _db.TblEmployees.Where(x => x.IsActive).FirstOrDefault(x => x.Id == id);
@@ -126,7 +127,7 @@ public class EmployeeService : IEmployeeService
             item.Email = request.Email;
         if (!string.IsNullOrEmpty(request.DepartmentId.ToString()))
             item.DepartmentId = (int)request.DepartmentId;
-        _db.SaveChanges();
+        await _db.SaveChangesAsync();
         dto = new EmployeeResponseDto
         {
             IsSuccess = true,
@@ -135,12 +136,12 @@ public class EmployeeService : IEmployeeService
         return dto;
     }
 
-    public EmployeeResponseDto DeleteEmployee(int id)
+    public async Task<EmployeeResponseDto> DeleteEmployee(int id)
     {
         EmployeeResponseDto dto = new EmployeeResponseDto();
         var item = _db.TblEmployees.Where(x=> x.IsActive).FirstOrDefault(x=>x.Id == id);
         item.IsActive = false;
-        _db.SaveChanges();
+        await _db.SaveChangesAsync();
         dto = new EmployeeResponseDto
         {
             IsSuccess = true,

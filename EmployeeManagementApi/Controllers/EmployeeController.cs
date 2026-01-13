@@ -18,9 +18,9 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetEmployee()
+    public async Task<IActionResult> GetEmployee()
     {
-        var result = _employeeService.GetEmployee();
+        var result = await _employeeService.GetEmployee();
         if (!result.IsSuccess)
         {
             return BadRequest(result);
@@ -29,9 +29,9 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetEmployeeById(int id)
+    public async Task<IActionResult> GetEmployeeById(int id)
     {
-        var result = _employeeService.GetEmployeeById(id);
+        var result = await _employeeService.GetEmployeeById(id);
         if (!result.IsSuccess)
         {
             return BadRequest(result);
@@ -40,9 +40,9 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreateEmployee(EmployeeRequestDto request)
+    public async Task<IActionResult>CreateEmployee(EmployeeRequestDto request)
     {
-        var result = _employeeService.CreateEmployee(request);
+        var result = await _employeeService.CreateEmployee(request);
         if (!result.IsSuccess)
         {
             return BadRequest(result);
@@ -51,10 +51,10 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateEmployee(int id, EmployeeRequestDto request)
+    public async Task<IActionResult> UpdateEmployee(int id, EmployeeRequestDto request)
     {
 
-        var result = _employeeService.UpdateEmployee(id,request);
+        var result = await _employeeService.UpdateEmployee(id, request);
         if (!result.IsSuccess)
         {
             return BadRequest(result);
@@ -63,9 +63,9 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpPatch("{id}")]
-    public IActionResult PatchEmployee(int id, EmployeePatchRequestDto request)
+    public async Task<IActionResult> PatchEmployee(int id, EmployeePatchRequestDto request)
     {
-        var result = _employeeService.PatchEmployee(id,request);
+        var result = await _employeeService.PatchEmployee(id,request);
         if (!result.IsSuccess)
         {
             return BadRequest(result);
@@ -74,9 +74,9 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public IActionResult DeleteEmployee(int id)
+    public async Task<IActionResult> DeleteEmployee(int id)
     {
-        var result = _employeeService.DeleteEmployee(id);
+        var result = await _employeeService.DeleteEmployee(id);
         if (!result.IsSuccess)
         {
             return BadRequest(result);
@@ -84,6 +84,7 @@ public class EmployeeController : ControllerBase
         return Ok(result);
     }
 
-    
 
+
+    
 }

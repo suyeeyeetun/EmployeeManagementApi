@@ -17,10 +17,10 @@ public class EmployeeAdoRepository : IEmployeeAdoRepository
         try
         {
             string updateEmployee = @"SELECT TOP 1 Salary
-FROM Tbl_SalaryHistory
-WHERE EmployeeId = @EmployeeId
-ORDER BY EffectiveFrom DESC
-";
+            FROM Tbl_SalaryHistory
+            WHERE EmployeeId = @EmployeeId
+            ORDER BY EffectiveFrom DESC
+            ";
 
             using SqlCommand cmd1 = new SqlCommand(updateEmployee, conn, transaction);
             cmd1.Parameters.AddWithValue("@Salary", newSalary);
